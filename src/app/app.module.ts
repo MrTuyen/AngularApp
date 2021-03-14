@@ -8,6 +8,9 @@ import { RegisterComponent } from './register/register.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import { PriceComponent } from './price/price.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,15 @@ import { ContactComponent } from './contact/contact.component';
     RegisterComponent,
     ForgetPasswordComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    PriceComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

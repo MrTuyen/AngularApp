@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from 'src/app/home/home.service'
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  public users: any[] = [];
 
-  ngOnInit(): void {
+  constructor(private _homeService: HomeService) {
+   
   }
 
+  ngOnInit(): void {
+    this._homeService.getUsers().subscribe(res => {
+      this.users = res;
+    });
+  }
+
+}
+
+export interface User{
+  name: string;
+  city: string;
 }
