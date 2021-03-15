@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import { PriceComponent } from './price/price.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     ContactComponent,
     PriceComponent,
     PageNotFoundComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,

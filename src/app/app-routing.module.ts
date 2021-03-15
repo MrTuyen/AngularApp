@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PriceComponent } from './price/price.component';
 import { RegisterComponent } from './register/register.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routes: Routes = [
 	{ path: 'forgot-password', component: ForgetPasswordComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
       children: [
 		{ path: 'contact', component: ContactComponent },
 		{ path: 'price', component: PriceComponent },
+		{ path: 'user-detail/:id', component: UserDetailComponent },
       ]
     },
 	{path: '**', component: PageNotFoundComponent}
