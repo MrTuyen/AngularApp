@@ -17,4 +17,8 @@ export class HomeService {
     public getUsers() : Observable<any[]> {
         return this.http.get<any[]>('https://api.mocki.io/v1/b043df5a');
     }
+
+    public Get() : Observable<any[]> {
+        return this.http.get<any[]>('data.json');
+    }
 }

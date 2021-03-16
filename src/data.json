@@ -1,0 +1,18 @@
+[
+    {
+        "city": "Stockholm",
+        "name": "Lennart Johansson"
+    },
+    {
+        "city": "London",
+        "name": "Karl Eriksson"
+    },
+    {
+        "city": "Helsinki",
+        "name": "Pekka Hartikainen"
+    },
+    {
+        "city": "Berlin",
+        "name": "Mia Svensson"
+    }
+]
