@@ -2,17 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'src/app/home/home.service'
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { NotificationService } from '../notification.service';
-import { $ } from 'protractor';
+
+declare var $: any
 
 @Component({
 	selector: 'app-contact',
 	templateUrl: './contact.component.html',
 	styleUrls: ['./contact.component.css']
 })
+
 export class ContactComponent implements OnInit {
 	public users: any[] = [];
 	public file: any;
 	public user = new User("", "");
+	public updateuser = new User("","");
 
 	constructor(private _homeService: HomeService,
 		private router: Router,
@@ -51,15 +54,23 @@ export class ContactComponent implements OnInit {
 	AddNewUser(): void {
 		this.users.push(this.user);
 		this.user = new User("", "");
-		document.getElementById('city')?.focus();
+		this.noti.showSuccess("Add successfully", "Success");
+		$("#addUser").modal("hide");
 	}
 
 	SelectUser(user: User): void{
-		this.user = user;
+		this.updateuser = { ...user }
 	}
 
-	UpdateUser(): void {
-		console.log(this.users);
+	UpdateUser(user: User): void {
+		this.users.forEach((element: User) => {
+			if(element.city === user.city)
+			{
+				element.name = user.name;
+			}
+		});
+		this.noti.showSuccess("Update successfully", "Success");
+		$("#updateUser").modal("hide");
 	}
 }
 
@@ -68,13 +79,13 @@ export class ContactComponent implements OnInit {
 //   city!: string;
 // }
 
-export class User {
+export class User 
+{
 	name: string;
 	city: string;
-	constructor(
-		name: string,
-		city: string
-	) {
+	
+	constructor(name: string, city: string) 
+	{
 		this.name = name;
 		this.city = city;
 	}

@@ -2,7 +2,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">User List</h1>
-        <a href="javascript:;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" (click)="OpenAddNewUserModal()" data-toggle="modal" data-target="#uploadUser">
+        <a href="javascript:;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" (click)="OpenAddNewUserModal()" data-toggle="modal" data-target="#addUser">
             <i class="fas fa-plus fa-sm text-white-50"></i> Add new
         </a>
     </div>
@@ -38,7 +38,7 @@
     </div>
 </div>
 <!-- /.container-fluid -->
-<div class="modal fade" id="uploadUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -76,17 +76,17 @@
                 <form>
                     <div class="form-group">
                         <label for="city">City</label>
-                        <input type="text" class="form-control" [(ngModel)]="user.city" id="city" name="user.city" required placeholder="Enter city">
+                        <input type="text" class="form-control" [(ngModel)]="updateuser.city" name="updateuser.city" disabled required placeholder="Enter city">
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="user.name" name="user.name" required placeholder="Emter name">
+                        <input type="text" class="form-control" [(ngModel)]="updateuser.name" name="updateuser.name" required placeholder="Emter name">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary float-right" (click)="UpdateUser()">Submit</button>
+                <button type="submit" class="btn btn-primary float-right" (click)="UpdateUser(updateuser)">Submit</button>
             </div>
         </div>
     </div>

@@ -21,4 +21,12 @@ export class HomeService {
     public Get() : Observable<any[]> {
         return this.http.get<any[]>('data.json');
     }
+
+    // Get
+
+    // Add
+
+    // Update
+
+    // Delete
 }
