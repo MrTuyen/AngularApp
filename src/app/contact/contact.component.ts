@@ -27,7 +27,7 @@ export class ContactComponent implements OnInit {
 		//   this.users = res;
 		// });
 
-		this._homeService.Get().subscribe(res => {
+		this._homeService.get().subscribe(res => {
 			if(this.users.length <= 0){
 				this.users = res;
 			}
@@ -35,7 +35,7 @@ export class ContactComponent implements OnInit {
 	}
 
 	OpenAddNewUserModal(): void{
-		this.user = new User("", "");
+		
 	}
 
 	DbClickFunc(name: string): void {

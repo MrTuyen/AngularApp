@@ -16,6 +16,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { Test1Component } from './test/test1/test1.component';
+import { Test2Component } from './test/test2/test2.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { FormsModule } from '@angular/forms';
     PageNotFoundComponent,
     UserDetailComponent,
     DashboardComponent,
+    Test1Component,
+    Test2Component,
   ],
   imports: [
     BrowserModule,
