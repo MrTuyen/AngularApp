@@ -9,7 +9,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">User list</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Product List</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -23,10 +23,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of users; index as i;" (dblclick)="DbClickFunc(item.name)">
+                        <tr *ngFor="let item of products; index as i;" (dblclick)="DbClickFunc(item.Name)">
                             <td>{{i + 1}}</td>
-                            <td>{{item.city}}</td>
-                            <td>{{item.name}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Price}}</td>
                             <td>
                                 <a class="btn btn-success btn-sm" (click)="SelectUser(item)" data-toggle="modal" data-target="#updateUser"><i class="fa fa-edit"></i></a>
                             </td>
@@ -43,23 +43,27 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <strong>Add User</strong>
+                <strong>Add Product</strong>
             </div>
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" class="form-control" [(ngModel)]="user.city" id="city" name="user.city" required placeholder="Enter city">
+                        <label for="city">ID</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.Id" name="product.Id" required placeholder="ID">
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="user.name" name="user.name" required placeholder="Emter name">
+                        <input type="text" class="form-control" [(ngModel)]="product.Name" name="product.Name" required placeholder="Emter name">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Price</label>
+                        <input type="text" class="form-control" [(ngModel)]="product.Price" name="product.Price" required placeholder="Emter price">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary float-right" (click)="AddNewUser()">Submit</button>
+                <button type="submit" class="btn btn-primary float-right" (click)="AddProduct()">Submit</button>
             </div>
         </div>
     </div>

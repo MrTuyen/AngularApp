@@ -12,10 +12,12 @@ declare var $: any
 })
 
 export class ContactComponent implements OnInit {
+	public products: any[] = [];
 	public users: any[] = [];
 	public file: any;
 	public user = new User("", "");
-	public updateuser = new User("","");
+	public updateuser = new User("", "");
+	public product: any = [];
 
 	constructor(private _homeService: HomeService,
 		private router: Router,
@@ -23,19 +25,19 @@ export class ContactComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		// this._homeService.getUsers().subscribe(res => {
-		//   this.users = res;
-		// });
-
-		this._homeService.get().subscribe(res => {
-			if(this.users.length <= 0){
-				this.users = res;
-			}
+		this._homeService.getUsers().subscribe(res => {
+			this.products = res.data;
 		});
+
+		// this._homeService.get().subscribe(res => {
+		// 	if(this.users.length <= 0){
+		// 		this.users = res;
+		// 	}
+		// });
 	}
 
-	OpenAddNewUserModal(): void{
-		
+	OpenAddNewUserModal(): void {
+
 	}
 
 	DbClickFunc(name: string): void {
@@ -51,21 +53,28 @@ export class ContactComponent implements OnInit {
 		this.file = e;
 	}
 
-	AddNewUser(): void {
-		this.users.push(this.user);
-		this.user = new User("", "");
+	AddProduct(): void {
+
+		const data = {
+			Name: this.product.Name,
+			Price: this.product.Price
+		};
+
+		var result = this._homeService.create(data).subscribe(res => {
+			this.products.push(res.data);
+		});
+
 		this.noti.showSuccess("Add successfully", "Success");
 		$("#addUser").modal("hide");
 	}
 
-	SelectUser(user: User): void{
+	SelectUser(user: User): void {
 		this.updateuser = { ...user }
 	}
 
 	UpdateUser(user: User): void {
 		this.users.forEach((element: User) => {
-			if(element.city === user.city)
-			{
+			if (element.city === user.city) {
 				element.name = user.name;
 			}
 		});
@@ -79,14 +88,31 @@ export class ContactComponent implements OnInit {
 //   city!: string;
 // }
 
-export class User 
-{
+export class User {
 	name: string;
 	city: string;
-	
-	constructor(name: string, city: string) 
-	{
+
+	constructor(name: string, city: string) {
 		this.name = name;
 		this.city = city;
 	}
+}
+
+export interface ProductResponse {
+	rs: string,
+	code: number,
+	data: Product[]
+}
+
+export interface Product {
+	Id: number;
+	Name: string;
+	Price: string;
+
+	// constructor(id: number, name: string, city: string) 
+	// {
+	// 	this.Id = id;
+	// 	this.Name = name;
+	// 	this.Price = city;
+	// }
 }
