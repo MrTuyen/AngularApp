@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'src/app/home/home.service'
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { NotificationService } from '../notification.service';
+import { MyCurrencyFormatterDirective } from '../Directives/digitDecimalNumber.directive';
 
 declare var $: any
 
@@ -16,7 +17,7 @@ export class ContactComponent implements OnInit {
 	public users: any[] = [];
 	public file: any;
 	public user = new User("", "");
-	public updateuser = new User("", "");
+	public currentProduct: any = [];
 	public product: any = [];
 
 	constructor(private _homeService: HomeService,
@@ -25,9 +26,7 @@ export class ContactComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this._homeService.getUsers().subscribe(res => {
-			this.products = res.data;
-		});
+		this.getAllProduct();
 
 		// this._homeService.get().subscribe(res => {
 		// 	if(this.users.length <= 0){
@@ -36,11 +35,11 @@ export class ContactComponent implements OnInit {
 		// });
 	}
 
-	OpenAddNewUserModal(): void {
+	openAddNewUserModal(): void {
 
 	}
 
-	DbClickFunc(name: string): void {
+	dbClickFunc(name: string): void {
 		// this.router.navigate(['/user-detail/' + name], {
 		//   queryParams: {
 
@@ -49,12 +48,19 @@ export class ContactComponent implements OnInit {
 		this.noti.showSuccess("Hello " + name, "Success");
 
 	}
-	Upload(e: Event): void {
+	upload(e: Event): void {
 		this.file = e;
 	}
 
-	AddProduct(): void {
+	getAllProduct(): void{
+		this._homeService.getUsers().subscribe(res => {
+			this.products = res.data;
+		}, error => {
+			this.noti.showError(error.message, "Error");
+		});
+	}
 
+	addProduct(): void {
 		const data = {
 			Name: this.product.Name,
 			Price: this.product.Price
@@ -62,24 +68,45 @@ export class ContactComponent implements OnInit {
 
 		var result = this._homeService.create(data).subscribe(res => {
 			this.products.push(res.data);
+			this.noti.showSuccess("Add successfully", "Success");
+		}, error => {
+			this.noti.showError(error.message, "Error");
 		});
-
-		this.noti.showSuccess("Add successfully", "Success");
 		$("#addUser").modal("hide");
 	}
 
-	SelectUser(user: User): void {
-		this.updateuser = { ...user }
+	selectProduct(id: Number): void {
+		// this.updateuser = { ...user }
+		var result = this._homeService.getById(id).subscribe(res => {
+			this.currentProduct = res.data;
+		}, error => {
+			this.noti.showError(error.message, "Error");
+		});
 	}
 
-	UpdateUser(user: User): void {
-		this.users.forEach((element: User) => {
-			if (element.city === user.city) {
-				element.name = user.name;
-			}
+	updateProduct(id: Number, product: Product): void {
+		// this.users.forEach((element: User) => {
+		// 	if (element.city === user.city) {
+		// 		element.name = user.name;
+		// 	}
+		// });
+
+		var result = this._homeService.update(id, product).subscribe(res => {
+			this.getAllProduct();
 		});
+
 		this.noti.showSuccess("Update successfully", "Success");
 		$("#updateUser").modal("hide");
+	}
+
+	deleteProduct(id: Number): void{
+		var result = this._homeService.delete(id).subscribe(res => {
+			this.getAllProduct();
+		}, error => {
+			this.noti.showError(error.message, "Error");
+		});
+
+		this.noti.showSuccess("Delete successfully", "Success");
 	}
 }
 

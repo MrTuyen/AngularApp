@@ -7,9 +7,7 @@ const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const baseURL = 'http://localhost:8080/api/products';
 const testUrl = 'http://localhost:60018/api/Product';
-const _testUrl = 'https://api.mocki.io/v1/b043df5a';
 @Injectable({
     providedIn: 'root',
 })
@@ -22,24 +20,24 @@ export class HomeService {
         return this.httpClient.get<ProductResponse>(testUrl);
     }
 
-    public getById(id: Number): Observable<any> {
-        return this.httpClient.get(`${baseURL}/${id}`);
+    public getById(id: Number): Observable<ProductResponse> {
+        return this.httpClient.get<ProductResponse>(`${testUrl}/${id}`);
     }
 
     public create(data: any): Observable<ProductResponse> {
         return this.httpClient.post<ProductResponse>(testUrl, data);
     }
 
-    public update(id: Number, data: any): Observable<any> {
-        return this.httpClient.put(`${baseURL}/${id}`, data);
+    public update(id: Number, data: any): Observable<ProductResponse> {
+        return this.httpClient.put<ProductResponse>(`${testUrl}/${id}`, data);
     }
 
     public delete(id: Number): Observable<any> {
-        return this.httpClient.delete(`${baseURL}/${id}`);
+        return this.httpClient.delete(`${testUrl}/${id}`);
     }
 
     public deleteAll(): Observable<any> {
-        return this.httpClient.delete(baseURL);
+        return this.httpClient.delete(testUrl);
     }
 
     public get(): Observable<any[]> {
@@ -47,6 +45,6 @@ export class HomeService {
     }
 
     public searchByName(name: String): Observable<any> {
-        return this.httpClient.get(`${baseURL}?name=${name}`);
+        return this.httpClient.get(`${testUrl}?name=${name}`);
     }
 }

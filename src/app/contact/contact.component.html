@@ -17,18 +17,19 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>City</th>
                             <th>Name</th>
-                            <th>Action</th>
+                            <th>Price</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of products; index as i;" (dblclick)="DbClickFunc(item.Name)">
+                        <tr *ngFor="let item of products; index as i;" (dblclick)="dbClickFunc(item.Name)">
                             <td>{{i + 1}}</td>
                             <td>{{item.Name}}</td>
-                            <td>{{item.Price}}</td>
-                            <td>
-                                <a class="btn btn-success btn-sm" (click)="SelectUser(item)" data-toggle="modal" data-target="#updateUser"><i class="fa fa-edit"></i></a>
+                            <td>{{item.Price | number:'1.0-0'}}</td>
+                            <td class="text-center">
+                                <a class="btn btn-success btn-sm mr-1" (click)="selectProduct(item.Id)" data-toggle="modal" data-target="#updateUser"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-danger btn-sm" (click)="deleteProduct(item.Id)"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     </tbody>
@@ -57,13 +58,13 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Price</label>
-                        <input type="text" class="form-control" [(ngModel)]="product.Price" name="product.Price" required placeholder="Emter price">
+                        <input type="text" class="form-control" [(ngModel)]="product.Price" myCurrencyFormatter name="product.Price" required placeholder="Emter price">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary float-right" (click)="AddProduct()">Submit</button>
+                <button type="submit" class="btn btn-primary float-right" (click)="addProduct()">Submit</button>
             </div>
         </div>
     </div>
@@ -78,19 +79,20 @@
             </div>
             <div class="modal-body">
                 <form>
+                    <input type="hidden" class="form-control" [(ngModel)]="currentProduct.Id" name="currentProduct.Id" required placeholder="ID">
                     <div class="form-group">
                         <label for="city">City</label>
-                        <input type="text" class="form-control" [(ngModel)]="updateuser.city" name="updateuser.city" disabled required placeholder="Enter city">
+                        <input type="text" class="form-control" [(ngModel)]="currentProduct.Name" name="currentProduct.Name" required placeholder="Enter name">
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="updateuser.name" name="updateuser.name" required placeholder="Emter name">
+                        <input type="text" class="form-control" [(ngModel)]="currentProduct.Price" myCurrencyFormatter name="currentProduct.Price" required placeholder="Emter price">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary float-right" (click)="UpdateUser(updateuser)">Submit</button>
+                <button type="submit" class="btn btn-primary float-right" (click)="updateProduct(currentProduct.Id, currentProduct)">Submit</button>
             </div>
         </div>
     </div>

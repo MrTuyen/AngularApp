@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -18,8 +19,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { Test1Component } from './test/test1/test1.component';
 import { Test2Component } from './test/test2/test2.component';
+import { MyCurrencyPipe } from "./Pipe/MyCurrency.pipe";
+import { MyCurrencyFormatterDirective } from './Directives/digitDecimalNumber.directive';
 
 @NgModule({
+  exports:[
+    MyCurrencyPipe
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -33,6 +39,8 @@ import { Test2Component } from './test/test2/test2.component';
     DashboardComponent,
     Test1Component,
     Test2Component,
+    MyCurrencyPipe,
+    MyCurrencyFormatterDirective
   ],
   imports: [
     BrowserModule,
@@ -40,9 +48,10 @@ import { Test2Component } from './test/test2/test2.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    RouterModule
   ],
-  providers: [],
+  providers: [MyCurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
