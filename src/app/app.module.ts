@@ -21,6 +21,13 @@ import { Test1Component } from './test/test1/test1.component';
 import { Test2Component } from './test/test2/test2.component';
 import { MyCurrencyPipe } from "./Pipe/MyCurrency.pipe";
 import { MyCurrencyFormatterDirective } from './Directives/digitDecimalNumber.directive';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+import { MessagingService } from './service/messaging.service';
+import { environment } from '../environments/environment';
+import { AsyncPipe } from '../../node_modules/@angular/common';
 
 @NgModule({
   exports:[
@@ -49,9 +56,13 @@ import { MyCurrencyFormatterDirective } from './Directives/digitDecimalNumber.di
     BrowserAnimationsModule,
     FormsModule,
     ToastrModule.forRoot(),
-    RouterModule
+    RouterModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [MyCurrencyPipe],
+  providers: [MyCurrencyPipe, MessagingService, AsyncPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
