@@ -27,6 +27,7 @@ export class MessagingService {
       (payload: any) => {
         console.log("new message received. ", payload);
         this.currentMessage.next(payload);
-      })
-  }
+      }
+    )
+  } 
 }

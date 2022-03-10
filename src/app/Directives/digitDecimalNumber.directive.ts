@@ -20,6 +20,7 @@ export class MyCurrencyFormatterDirective implements OnInit {
   @HostListener("focus", ["$event.target.value"])
   onFocus(value: any) {
     this.el.value = this.currencyPipe.parse(value); // opossite of transform
+    this.el.value = this.currencyPipe.transform(value);
   }
 
   @HostListener("blur", ["$event.target.value"])

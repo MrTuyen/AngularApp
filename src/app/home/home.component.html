@@ -18,7 +18,8 @@
         <li class="nav-item">
             <a class="nav-link" routerLink="/dashboard">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <span>Dashboard</span>
+            </a>
         </li>
 
         <!-- Divider -->
@@ -26,7 +27,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Interface
+            Admin
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -38,9 +39,8 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" routerLink="/contact">Buttons</a>
-                    <a class="collapse-item" routerLink="cards.html">Cards</a>
+                    <h6 class="collapse-header">Admin:</h6>
+                    <a class="collapse-item" routerLink="/user">User</a>
                 </div>
             </div>
         </li>
@@ -126,7 +126,7 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-2 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -330,7 +330,7 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
+            <div class="m-2">
                 <router-outlet></router-outlet>
             </div>
             <!-- /.container-fluid -->

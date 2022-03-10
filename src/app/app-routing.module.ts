@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { ContactComponent } from './contact/contact.component';
+import { UserComponent } from './user/user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { HomeComponent } from './home/home.component';
@@ -15,15 +15,16 @@ const routes: Routes = [
 	{ path: 'forgot-password', component: ForgetPasswordComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'login', component: LoginComponent },
-    { path: '', component: HomeComponent, 
-      children: [
-		{ path: 'dashboard', component: DashboardComponent },
-		{ path: 'contact', component: ContactComponent },
-		{ path: 'price', component: PriceComponent },
-		{ path: 'user-detail/:id', component: UserDetailComponent },
-      ]
-    },
-	{path: '**', component: PageNotFoundComponent}
+	{
+		path: '', component: HomeComponent,
+		children: [
+			{ path: 'dashboard', component: DashboardComponent },
+			{ path: 'user', component: UserComponent },
+			{ path: 'price', component: PriceComponent },
+			{ path: 'user-detail/:id', component: UserDetailComponent },
+		]
+	},
+	{ path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

@@ -1,35 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product, ProductResponse } from '../user/user.component';
+import { User, UserResponse } from '../user/user.component';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-const testUrl = 'http://localhost:60018/api/Product';
+const testUrl = 'http://localhost:60018/api/User';
 @Injectable({
     providedIn: 'root',
 })
-export class HomeService {
+export class UserService {
 
     constructor(private httpClient: HttpClient) { }
 
     // Uses http.get() to load data from a single API endpoint
-    public getUsers(): Observable<ProductResponse> {
-        return this.httpClient.get<ProductResponse>(testUrl);
+    public getUsers(): Observable<UserResponse> {
+        return this.httpClient.get<UserResponse>(testUrl);
     }
 
-    public getById(id: Number): Observable<ProductResponse> {
-        return this.httpClient.get<ProductResponse>(`${testUrl}/${id}`);
+    public getById(id: Number): Observable<UserResponse> {
+        return this.httpClient.get<UserResponse>(`${testUrl}/${id}`);
     }
 
-    public create(data: any): Observable<ProductResponse> {
-        return this.httpClient.post<ProductResponse>(testUrl, data);
+    public create(data: any): Observable<UserResponse> {
+        return this.httpClient.post<UserResponse>(testUrl, data);
     }
 
-    public update(id: Number, data: any): Observable<ProductResponse> {
-        return this.httpClient.put<ProductResponse>(`${testUrl}/${id}`, data);
+    public update(id: Number, data: any): Observable<UserResponse> {
+        return this.httpClient.put<UserResponse>(`${testUrl}/${id}`, data);
     }
 
     public delete(id: Number): Observable<any> {
